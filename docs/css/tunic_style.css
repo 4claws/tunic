@@ -1,0 +1,70 @@
+:root {
+    /* Tavolozza colori libretto originale di Tunic */
+    --md-theme-primary: #e69138;        /* Arancione Volpe */
+    --md-theme-accent: #ffb13b;         /* Oro Sacro */
+    --md-default-bg-color: #f7f1e3;     /* Carta ingiallita vintage */
+    --md-default-fg-color: #2c2520;     /* Inchiostro marrone scuro (non nero puro) */
+    
+    /* Variante scura per la notte (stile Dark World) */
+    --md-dark-bg-color: #1a1512;
+    --md-dark-fg-color: #f4eae1;
+}
+
+/* Applica l'effetto carta e il font stile retrò a tutto il corpo del sito */
+body, .md-container {
+    background-color: var(--md-default-bg-color) !important;
+    color: var(--md-default-fg-color) !important;
+    font-family: 'Courier New', Courier, monospace !important; /* Richiama il font di macchina da scrivere del manuale */
+}
+
+/* Trasforma la barra dei contenuti in una vera "pagina del libretto" con bordi geometrici */
+.md-content__inner {
+    background: #faf4e8 !important;
+    border: 3px double #e69138 !important; /* Doppio bordo classico dei giochi anni '80/'90 */
+    border-radius: 8px;
+    padding: 30px !important;
+    box-shadow: 4px 4px 0px #2c2520; /* Ombra netta in stile pixel-art */
+}
+
+/* Stile dei titoli principali (H1) */
+.md-content h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff !important;
+    background-color: #e69138; /* Titoli dentro blocchi di colore come nel gioco */
+    padding: 10px 15px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+/* Stile dei sottotitoli (H3) */
+.md-content h3 {
+    color: #cc7014 !important;
+    border-bottom: 2px dashed #ffb13b;
+    padding-bottom: 5px;
+}
+
+/* Stilizzazione dei blocchi di citazione (i consigli segreti dei programmatori nel manuale) */
+.md-content blockquote {
+    background-color: #fffbdf !important;
+    border-left: 5px solid #ffb13b !important;
+    color: #5d4037 !important;
+    padding: 15px !important;
+    border-radius: 0 6px 6px 0;
+}
+
+/* Tabelle dei glifi modificate per sembrare appunti scritti a mano */
+.md-typeset table:not([class]) {
+    border: 2px solid #2c2520 !important;
+    border-collapse: collapse;
+}
+
+.md-typeset th {
+    background-color: #ffb13b !important;
+    color: #2c2520 !important;
+    font-weight: bold;
+}
+
+.md-typeset td {
+    border: 1px solid #d0c4b0 !important;
+}
