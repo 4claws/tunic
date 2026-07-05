@@ -1,70 +1,60 @@
+/* Sovrascrive i colori ufficiali del tema di MkDocs */
 :root {
-    /* Tavolozza colori libretto originale di Tunic */
-    --md-theme-primary: #e69138;        /* Arancione Volpe */
-    --md-theme-accent: #ffb13b;         /* Oro Sacro */
-    --md-default-bg-color: #f7f1e3;     /* Carta ingiallita vintage */
-    --md-default-fg-color: #2c2520;     /* Inchiostro marrone scuro (non nero puro) */
-    
-    /* Variante scura per la notte (stile Dark World) */
-    --md-dark-bg-color: #1a1512;
-    --md-dark-fg-color: #f4eae1;
+  --md-primary-fg-color:        #e69138; /* Arancione Volpe */
+  --md-primary-fg-color--dark: #cc7014;
+  --md-accent-fg-color:         #ffb13b; /* Oro Tunic */
+  
+  /* Colore pergamena/carta ingiallita per lo sfondo */
+  --md-default-bg-color:        #f7f1e3; 
+  --md-default-fg-color:        #2c2520; /* Inchiostro marrone scuro */
+  
+  /* Sfondi delle schede e dei blocchi di codice */
+  --md-code-bg-color:           #faf4e8;
 }
 
-/* Applica l'effetto carta e il font stile retrò a tutto il corpo del sito */
-body, .md-container {
-    background-color: var(--md-default-bg-color) !important;
-    color: var(--md-default-fg-color) !important;
-    font-family: 'Courier New', Courier, monospace !important; /* Richiama il font di macchina da scrivere del manuale */
+/* Modifica lo sfondo generale dell'applicazione */
+.md-container, body, .md-sidebar {
+    background-color: #f7f1e3 !important;
 }
 
-/* Trasforma la barra dei contenuti in una vera "pagina del libretto" con bordi geometrici */
+/* Trasforma la scatola del testo in una pagina del libretto con doppio bordo */
 .md-content__inner {
-    background: #faf4e8 !important;
-    border: 3px double #e69138 !important; /* Doppio bordo classico dei giochi anni '80/'90 */
+    background-color: #faf4e8 !important;
+    border: 3px double #e69138 !important; /* Doppio bordo retrò */
     border-radius: 8px;
     padding: 30px !important;
-    box-shadow: 4px 4px 0px #2c2520; /* Ombra netta in stile pixel-art */
+    box-shadow: 5px 5px 0px #2c2520; /* Ombra netta stile pixel-art */
 }
 
-/* Stile dei titoli principali (H1) */
+/* Rende i titoli H1 dei blocchi colorati pieni, come le intestazioni del gioco */
 .md-content h1 {
-    font-weight: bold;
-    text-transform: uppercase;
+    background-color: #e69138;
     color: #ffffff !important;
-    background-color: #e69138; /* Titoli dentro blocchi di colore come nel gioco */
-    padding: 10px 15px;
+    padding: 12px;
     border-radius: 4px;
-    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* Stile dei sottotitoli (H3) */
+/* I sottotitoli diventano color ruggine con una linea tratteggiata dorata */
 .md-content h3 {
     color: #cc7014 !important;
     border-bottom: 2px dashed #ffb13b;
     padding-bottom: 5px;
+    margin-top: 30px;
 }
 
-/* Stilizzazione dei blocchi di citazione (i consigli segreti dei programmatori nel manuale) */
+/* I blocchi di citazione (i consigli segreti) diventano gialli */
 .md-content blockquote {
     background-color: #fffbdf !important;
     border-left: 5px solid #ffb13b !important;
     color: #5d4037 !important;
-    padding: 15px !important;
-    border-radius: 0 6px 6px 0;
 }
 
-/* Tabelle dei glifi modificate per sembrare appunti scritti a mano */
-.md-typeset table:not([class]) {
-    border: 2px solid #2c2520 !important;
-    border-collapse: collapse;
+/* Corregge il testo del menu laterale per non farlo confondere con lo sfondo */
+.md-nav__link {
+    color: #5d4037 !important;
 }
-
-.md-typeset th {
-    background-color: #ffb13b !important;
-    color: #2c2520 !important;
+.md-nav__link--active {
+    color: #e69138 !important;
     font-weight: bold;
-}
-
-.md-typeset td {
-    border: 1px solid #d0c4b0 !important;
 }
