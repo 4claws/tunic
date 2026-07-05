@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Introduzione
-permalink: /introduzione.html
+title: Linguaggi
+permalink: /linguaggi.html
 ---
 #test
