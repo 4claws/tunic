@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroLog - Diario Interstellare</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Script esterno per la conversione del Markdown in tempo reale -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body>
+
+    <!-- NAVIGAZIONE LATERALE -->
+    <nav class="sidebar">
+        <div class="logo">🚀 AstroLog</div>
+        <ul class="nav-menu">
+            <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+            <li><a href="#mission" class="nav-link">Missione</a></li>
+            <li><a href="#logs" class="nav-link">Registri di Bordo</a></li>
+        </ul>
+    </nav>
+
+    <!-- AREA DEI CONTENUTI -->
+    <main class="main-content">
+        
+        <!-- SEZIONE DASHBOARD -->
+        <section id="dashboard" class="content-section active" data-markdown>
+# Stato dei Sistemi
+Benvenuto sul terminale della navetta *Odyssey*. I sistemi di navigazione sono attivi.
+
+* **Propulsione**: 94%
+* **Supporto Vitale**: Ottimale
+* **Schermatura Radiazioni**: Attiva
+
+Seleziona una voce dal menu per consultare i dettagli della missione.
+        </section>
+
+        <!-- SEZIONE MISSIONE -->
+        <section id="mission" class="content-section" data-markdown>
+# Obiettivi Missione
+La missione *AstroLog-2026* mira all'esplorazione dei confini del sistema solare esterno.
+
+### Fasi Principali
+1. Superamento della fascia di asteroidi.
+2. Raccolta campioni atmosferici sui satelliti di Giove.
+3. Stabilizzazione dell'orbita di parcheggio.
+        </section>
+
+        <!-- SEZIONE REGISTRI -->
+        <section id="logs" class="content-section" data-markdown>
+# Registri di Bordo
+Di seguito le ultime annotazioni del comandante.
+
+### Data Stellare 4521.3
+Rilevata un'anomalia gravitazionale nei pressi di Marte. I sensori indicano fluttuazioni minori, rotta corretta manualmente senza imprevisti.
+
+### Data Stellare 4522.7
+Avvicinamento alla destinazione principale completato con successo. Segnali radio stabili.
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
