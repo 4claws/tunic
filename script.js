@@ -4,14 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Funzione principale per scaricare e convertire il file .md
     async function loadMarkdownPage(fileName) {
-        // Se il nome del file è vuoto o corrotto, imposta la pagina iniziale
+        // Se il nome è vuoto, corrotto o contiene .html, carica la pagina iniziale di default
         if (!fileName || fileName === "" || fileName.includes("html")) {
             fileName = "introduzione.md";
         }
 
         try {
-            // Scarica il file di testo puro da GitHub
-            const response = await fetch("./" + fileName);
+            // RISOLUZIONE DEL PATH: Generiamo l'URL assoluto corretto basato sulla cartella del tuo sito
+            // Questo evita i blocchi di caricamento quando si naviga tra gli hash (#)
+            const siteLocation = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+            const absoluteUrl = window.location.origin + siteLocation + fileName;
+            
+            // Scarichiamo il file di testo puro inviando la richiesta a GitHub
+            const response = await fetch(absoluteUrl, { cache: "no-store" });
             
             if (!response.ok) {
                 throw new Error("File non trovato");
@@ -19,23 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const markdownText = await response.text();
             
-            // Converte il testo in HTML e lo stampa nella pagina
+            // Trasformiamo il testo Markdown in codice HTML leggibile dal browser
             contentDiv.innerHTML = window.marked.parse(markdownText);
             
         } catch (error) {
-            contentDiv.innerHTML = `<h1>Errore di Caricamento</h1><p>Impossibile trovare il file: <strong>${fileName}</strong>. Verifica che sia scritto in minuscolo su GitHub.</p>`;
+            contentDiv.innerHTML = `<h1>Errore di Caricamento</h1>
+                                    <p>Impossibile trovare o leggere il file: <strong>${fileName}</strong></p>
+                                    <p>Verifica che nel tuo repository GitHub esista un file con questo nome scritto interamente in minuscolo.</p>`;
         }
     }
 
-    // Gestione dei clic sulle voci del menu laterale
+    // Gestione del click sulle voci del menu della barra laterale
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
-            e.preventDefault(); // Impedisce al browser di scaricare il file fisicamente
+            e.preventDefault(); // Blocca l'azione nativa del browser per i file scaricabili
             
             const targetFile = link.getAttribute("href");
-            window.location.hash = targetFile; // Cambia l'URL in alto (es: #linguaggi.md)
+            window.location.hash = targetFile; // Aggiorna la barra degli indirizzi inserendo l'hash (es: #linguaggi.md)
             
-            // Aggiorna la classe attiva nel menu grafico
+            // Cambia l'evidenziazione visiva del link attivo nel menu
             navLinks.forEach(l => l.classList.remove("active"));
             link.classList.add("active");
 
@@ -43,13 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Controllo della pagina all'avvio del sito (Gestione ricarica o link diretti)
+    // Sincronizzazione della cronologia del browser e controllo dell'URL iniziale
     function checkCurrentRoute() {
         const currentHash = window.location.hash.replace("#", "");
         
         if (currentHash) {
             loadMarkdownPage(currentHash);
-            // Sincronizza il menu laterale accendendo il link corretto
+            // Illumina la voce corretta nel menu laterale se l'utente ricarica la pagina
             navLinks.forEach(link => {
                 if (link.getAttribute("href") === currentHash) {
                     link.classList.add("active");
@@ -58,15 +65,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         } else {
-            // Se l'URL non ha hash, carica la pagina iniziale
+            // Se l'indirizzo è pulito (es: /tunic/), carica l'introduzione di base
             loadMarkdownPage("introduzione.md");
         }
     }
 
-    // Esegue il controllo all'apertura del sito
+    // Avvia la verifica all'apertura del sito
     checkCurrentRoute();
 
-    // Ascolta se l'utente usa le frecce "Avanti/Indietro" del browser
+    // Gestisce il cambio pagina se l'utente preme i pulsanti Avanti/Indietro del browser
     window.addEventListener("hashchange", checkCurrentRoute);
+});
+
 });
 
