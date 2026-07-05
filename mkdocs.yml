@@ -3,9 +3,7 @@ site_name: TUNIC - Manuale di Istruzioni
 theme:
   name: material
   language: it
-  font:
-    text: Courier New  # Applica il font stile macchina da scrivere del gioco
-    code: Share Tech Mono
 
 extra_css:
-  - css/tunic_style.css
+  - stylesheets/tunic_style.css
+
