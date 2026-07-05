@@ -2,71 +2,87 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll(".nav-link");
     const contentDiv = document.getElementById("markdown-content");
 
-    // Funzione per scaricare il file .md dal server e convertirlo
-    async function fetchAndRender(pageName) {
-        // Se non c'è una pagina specificata, carichiamo l'introduzione di default
-        const fileToFetch = (pageName && pageName !== "") ? `${pageName}.md` : "introduzione.md";
+    // Funzione universale per scaricare e convertire i file .md in tempo reale
+    async function loadMarkdownPage(fileName) {
+        // Se l'indirizzo è nullo o punta a pagine vecchie, pulisce e forza la home
+        if (!fileName || fileName.trim() === "" || fileName.includes("html") || fileName === "introduzione") {
+            fileName = "introduzione.md";
+        }
         
+        // Se per errore l'hash si porta dietro l'estensione pulita senza .md, la corregge
+        if (!fileName.endsWith(".md")) {
+            fileName += ".md";
+        }
+
         try {
             contentDiv.innerHTML = "Caricamento in corso...";
+
+            // Generazione dell'URL assoluto della cartella di GitHub Pages
+            // Impedisce al browser di sbagliare cartella quando si naviga tramite hashtag
+            const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+            const cleanUrl = window.location.origin + basePath + fileName;
             
-            // Scarica il file .md reale presente nel tuo repository
-            const response = await fetch(`./${fileToFetch}`, { cache: "no-store" });
+            // Richiesta asincrona HTTP con blocco della memoria cache vecchia
+            const response = await fetch(cleanUrl, { cache: "no-store" });
             
             if (!response.ok) {
                 throw new Error("File non trovato");
             }
             
-            const rawMarkdown = await response.text();
+            const markdownText = await response.text();
             
-            // Converte il testo Markdown in vero codice HTML e lo stampa a schermo
-            contentDiv.innerHTML = window.marked.parse(rawMarkdown);
+            // Compilazione del testo Markdown in vero HTML all'interno del contenitore
+            contentDiv.innerHTML = window.marked.parse(markdownText);
             
         } catch (error) {
             contentDiv.innerHTML = `<h1>Errore di Caricamento</h1>
-                                    <p>Impossibile trovare il file di testo: <strong>${fileToFetch}</strong></p>
-                                    <p>Verifica che il file sia presente su GitHub e che il nome sia scritto in minuscolo.</p>`;
+                                    <p>Impossibile leggere il file: <strong>${fileName}</strong></p>
+                                    <p>Verifica che nel tuo repository esista un file con questo nome scritto interamente in minuscolo.</p>`;
         }
     }
 
-    // Gestione dei click sul menu laterale
+    // Intercettazione e gestione dei click sui link del menu laterale
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
-            e.preventDefault(); // Blocca l'azione di download nativa del browser
+            e.preventDefault(); // Disattiva il download automatico del file .md da parte di HTML
             
-            const targetHash = link.getAttribute("href"); // Es: "#linguaggi"
-            window.location.hash = targetHash; // Aggiorna l'URL del browser
+            const targetHash = link.getAttribute("href"); // Es: "#linguaggi.md"
+            window.location.hash = targetHash; // Scrive l'indirizzo nella barra URL in alto
             
-            // Gestione grafica del pulsante attivo
+            // Aggiorna l'interfaccia grafica muovendo la selezione arancione
             navLinks.forEach(l => l.classList.remove("active"));
             link.classList.add("active");
 
-            // Rimuove l'hashtag per ottenere il nome puro del file (es: "linguaggi")
-            const pageName = targetHash.replace("#", "");
-            fetchAndRender(pageName);
+            // Estrae il nome pulito del file escludendo il cancelletto iniziale
+            const pureFileName = targetHash.replace("#", "");
+            loadMarkdownPage(pureFileName);
         });
     });
 
-    // Controllo della rotta all'apertura del sito o al cambio di cronologia
-    function router() {
+    // Router per calcolare la pagina corretta in fase di avvio o ricarica della scheda
+    function checkCurrentRoute() {
         const currentHash = window.location.hash.replace("#", "");
         
-        // Sincronizza visivamente il menu laterale all'avvio
-        navLinks.forEach(link => {
-            const hrefClean = link.getAttribute("href").replace("#", "");
-            if (hrefClean === currentHash || (currentHash === "" && hrefClean === "introduzione")) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
-        });
-
-        fetchAndRender(currentHash);
+        if (currentHash) {
+            loadMarkdownPage(currentHash);
+            
+            // Accende il pulsante corretto nel menu laterale in base all'URL inserito
+            navLinks.forEach(link => {
+                if (link.getAttribute("href").replace("#", "") === currentHash) {
+                    link.classList.add("active");
+                } else {
+                    link.classList.remove("active");
+                }
+            });
+        } else {
+            // Se l'utente atterra sulla home pulita (senza hashtag), carica l'introduzione
+            loadMarkdownPage("introduzione.md");
+        }
     }
 
-    // Avvia il controllo all'apertura del sito
-    router();
+    // Avvio del controllo all'apertura del sito
+    checkCurrentRoute();
 
-    // Ascolta se l'utente preme i pulsanti Avanti/Indietro del browser
-    window.addEventListener("hashchange", router);
+    // Sincronizza i testi se l'utente preme i pulsanti Avanti/Indietro del browser
+    window.addEventListener("hashchange", checkCurrentRoute);
 });
