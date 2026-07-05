@@ -1,0 +1,60 @@
+/* Sovrascrive i colori ufficiali del tema di MkDocs */
+:root {
+  --md-primary-fg-color:        #e69138; /* Arancione Volpe */
+  --md-primary-fg-color--dark: #cc7014;
+  --md-accent-fg-color:         #ffb13b; /* Oro Tunic */
+  
+  /* Colore pergamena/carta ingiallita per lo sfondo */
+  --md-default-bg-color:        #f7f1e3; 
+  --md-default-fg-color:        #2c2520; /* Inchiostro marrone scuro */
+  
+  /* Sfondi delle schede e dei blocchi di codice */
+  --md-code-bg-color:           #faf4e8;
+}
+
+/* Modifica lo sfondo generale dell'applicazione */
+.md-container, body, .md-sidebar {
+    background-color: #f7f1e3 !important;
+}
+
+/* Trasforma la scatola del testo in una pagina del libretto con doppio bordo */
+.md-content__inner {
+    background-color: #faf4e8 !important;
+    border: 3px double #e69138 !important; /* Doppio bordo retrò */
+    border-radius: 8px;
+    padding: 30px !important;
+    box-shadow: 5px 5px 0px #2c2520; /* Ombra netta stile pixel-art */
+}
+
+/* Rende i titoli H1 dei blocchi colorati pieni, come le intestazioni del gioco */
+.md-content h1 {
+    background-color: #e69138;
+    color: #ffffff !important;
+    padding: 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* I sottotitoli diventano color ruggine con una linea tratteggiata dorata */
+.md-content h3 {
+    color: #cc7014 !important;
+    border-bottom: 2px dashed #ffb13b;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+/* I blocchi di citazione (i consigli segreti) diventano gialli */
+.md-content blockquote {
+    background-color: #fffbdf !important;
+    border-left: 5px solid #ffb13b !important;
+    color: #5d4037 !important;
+}
+
+/* Corregge il testo del menu laterale per non farlo confondere con lo sfondo */
+.md-nav__link {
+    color: #5d4037 !important;
+}
+.md-nav__link--active {
+    color: #e69138 !important;
+    font-weight: bold;
+}
