@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunic Wiki - Linguaggi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body>
+
+    <!-- BARRA DI NAVIGAZIONE LATERALE -->
+    <nav class="sidebar">
+        <div class="logo">🦊 TUNIC WIKI</div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Introduzione</a></li>
+            <li><a href="linguaggi.html" class="nav-link active">Linguaggi</a></li>
+            <li><a href="segreti.html" class="nav-link">Segreti</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENUTO PRINCIPALE -->
+    <main class="main-content">
+        <section data-markdown>
+# Decifrare il Linguaggio Sacro
+
+Quasi tutti i testi nel gioco e nel manuale sono scritti in un alfabeto glifico inventato, spesso chiamato dai fan **Trunic**. Non si tratta di simboli casuali, ma di un vero e proprio sistema fonetico.
+
+### Come funziona l'Alfabeto
+Il sistema si basa sulla lingua inglese ed è composto dall'unione di due elementi in un unico glifo:
+1.  **La sezione interna**: Rappresenta il suono delle *vocali*.
+2.  **La sezione esterna**: Rappresenta il suono delle *consonanti*.
+
+> 💡 **Consiglio per la traduzione**: Cerca le parole corte composte da un solo glifo all'interno del manuale. Molto spesso corrispondono alle parole inglesi "A", "I" o "TO".
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
