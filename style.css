@@ -1,4 +1,4 @@
-/* Reset di base */
+/* Reset generale */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1a1512; /* Marrone scuro caldo */
-    color: #f4eae1; /* Bianco panna morbido */
+    background-color: #1a1512; /* Marrone scuro Tunic */
+    color: #f4eae1; /* Testo panna */
     display: flex;
     min-height: 100vh;
 }
@@ -16,11 +16,11 @@ body {
 /* BARRA LATERALE FISSA */
 .sidebar {
     width: 260px;
-    background-color: #28201a; /* Variante più chiara per contrasto */
+    background-color: #28201a;
     padding: 30px 20px;
     position: fixed;
     height: 100vh;
-    border-right: 2px solid #e69138; /* Linea arancione volpe */
+    border-right: 2px solid #e69138; /* Arancione Volpe */
 }
 
 .sidebar .logo {
@@ -51,7 +51,6 @@ body {
     transition: all 0.25s ease;
 }
 
-/* Evidenziazione voce di menu attiva o al passaggio del mouse */
 .nav-link:hover, .nav-link.active {
     color: #ffffff;
     background-color: #3d3026;
@@ -59,19 +58,16 @@ body {
     padding-left: 11px;
 }
 
-/* AREA DEI TESTI (A DESTRA DELLA SIDEBAR) */
+/* CONTAINER DEI CONTENUTI */
 .main-content {
     margin-left: 260px;
     padding: 60px;
     width: calc(100% - 260px);
-    max-width: 900px; /* Evita che il testo si allarghi troppo su schermi giganti */
-}
-
-/* ANIMAZIONE E STILE FORMATTAZIONE TESTI MARKDOWN */
-main {
+    max-width: 900px;
     animation: fadeIn 0.4s ease-in-out;
 }
 
+/* STILI PER LA FORMATTAZIONE DEI FILE .MD GENERATI */
 .main-content h1 {
     font-size: 34px;
     color: #ffffff;
@@ -104,7 +100,6 @@ main {
     line-height: 1.6;
 }
 
-/* Stile per i blocchi di citazione/consigli (i blocchi con il simbolo >) */
 .main-content blockquote {
     background-color: #2a221c;
     border-left: 4px solid #e69138;
@@ -112,6 +107,24 @@ main {
     margin: 20px 0;
     border-radius: 4px;
     font-style: italic;
+}
+
+.main-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #211a15;
+}
+
+.main-content th, .main-content td {
+    padding: 12px;
+    border: 1px solid #3d3026;
+    text-align: left;
+}
+
+.main-content th {
+    background-color: #2d241e;
+    color: #ffb13b;
 }
 
 @keyframes fadeIn {
