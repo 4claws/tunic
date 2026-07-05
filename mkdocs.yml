@@ -1,0 +1,9 @@
+site_name: Tunic Wiki
+
+theme:
+  name: material  # Usa il tema "Material", moderno, scuro e reattivo
+
+nav:
+  - Introduzione: index.md
+  - Linguaggi: linguaggi.md
+  - Segreti: segreti.md
