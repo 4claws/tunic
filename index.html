@@ -3,61 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tunic</title>
+    <title>Tunic Wiki - Introduzione</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Script esterno per la conversione del Markdown in tempo reale -->
+    <!-- Libreria per convertire il Markdown in tempo reale -->
     <script src="https://jsdelivr.net"></script>
 </head>
 <body>
 
-    <!-- NAVIGAZIONE LATERALE -->
+    <!-- BARRA DI NAVIGAZIONE LATERALE -->
     <nav class="sidebar">
-        <div class="logo">Tunic</div>
+        <div class="logo">🦊 TUNIC WIKI</div>
         <ul class="nav-menu">
-            <li><a href="#Introduzione" class="nav-link active">Introduzione</a></li>
-            <li><a href="#Linguaggi" class="nav-link">I linguaggi</a></li>
-            <li><a href="#Segreti" class="nav-link">I segreti</a></li>
+            <li><a href="index.html" class="nav-link active">Introduzione</a></li>
+            <li><a href="linguaggi.html" class="nav-link">Linguaggi</a></li>
+            <li><a href="segreti.html" class="nav-link">Segreti</a></li>
         </ul>
     </nav>
 
-    <!-- AREA DEI CONTENUTI -->
+    <!-- CONTENUTO PRINCIPALE -->
     <main class="main-content">
-        
-        <!-- SEZIONE DASHBOARD -->
-        <section id="Introduzione" class="content-section active" data-markdown>
-# Stato dei Sistemi
-Benvenuto sul terminale della navetta *Odyssey*. I sistemi di navigazione sono attivi.
+        <section data-markdown>
+# Benvenuto nel Mondo di Tunic
 
-* **Propulsione**: 94%
-* **Supporto Vitale**: Ottimale
-* **Schermatura Radiazioni**: Attiva
+Sei una piccola volpe in un mondo pieno di grandi misteri. **Tunic** è un gioco d'azione isometrico che omaggia i classici dell'avventura, dove l'esplorazione e la scoperta personale sono al centro dell'esperienza.
 
-Seleziona una voce dal menu per consultare i dettagli della missione.
+### Caratteristiche Principali
+*   **Il Manuale delle Istruzioni**: Ricostruisci le pagine di un vero e proprio manuale di gioco vecchio stile.
+*   **Esplorazione Libera**: Nessuna guida lineare, sarai tu a dover capire dove andare.
+*   **Combattimento Tecnico**: Schivate, parate e gestione della barra della stamina.
+
+Usa il menu a sinistra per decifrare l'alfabeto del gioco o scoprire i misteri più reconditi dell'isola.
         </section>
-
-        <!-- SEZIONE MISSIONE -->
-        <section id="Linguaggi" class="content-section" data-markdown>
-# Obiettivi Missione
-La missione *AstroLog-2026* mira all'esplorazione dei confini del sistema solare esterno.
-
-### Fasi Principali
-1. Superamento della fascia di asteroidi.
-2. Raccolta campioni atmosferici sui satelliti di Giove.
-3. Stabilizzazione dell'orbita di parcheggio.
-        </section>
-
-        <!-- SEZIONE REGISTRI -->
-        <section id="Segreti" class="content-section" data-markdown>
-# Registri di Bordo
-Di seguito le ultime annotazioni del comandante.
-
-### Data Stellare 4521.3
-Rilevata un'anomalia gravitazionale nei pressi di Marte. I sensori indicano fluttuazioni minori, rotta corretta manualmente senza imprevisti.
-
-### Data Stellare 4522.7
-Avvicinamento alla destinazione principale completato con successo. Segnali radio stabili.
-        </section>
-
     </main>
 
     <script src="script.js"></script>
