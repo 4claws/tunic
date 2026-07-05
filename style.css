@@ -1,1 +1,121 @@
 
+/* Stili globali dell'applicazione */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0b0f19; /* Blu scuro profondo */
+    color: #e2e8f0;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* BARRA LATERALE FISSA */
+.sidebar {
+    width: 260px;
+    background-color: #111827; /* Grigio/Blu scuro */
+    padding: 30px 20px;
+    position: fixed;
+    height: 100vh;
+    border-right: 1px solid #1f2937;
+}
+
+.sidebar .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #38bdf8; /* Celeste Neon */
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-menu {
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-bottom: 12px;
+}
+
+.nav-link {
+    display: block;
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Effetti visivi per le voci di menu selezionate o al passaggio del mouse */
+.nav-link:hover, .nav-link.active {
+    color: #ffffff;
+    background-color: #1e293b;
+    border-left: 4px solid #38bdf8;
+    padding-left: 11px; /* Compensa lo spessore del bordo */
+}
+
+/* AREA CONTENUTI GENERALI */
+.main-content {
+    margin-left: 260px; /* Sposta il testo per non coprire la sidebar */
+    padding: 50px;
+    width: calc(100% - 260px);
+}
+
+/* LOGICA DI VISUALIZZAZIONE DELLE PAGINE */
+.content-section {
+    display: none; /* Nasconde tutte le sezioni di default */
+}
+
+.content-section.active {
+    display: block; /* Mostra la sezione solo se ha la classe active */
+    animation: slideUp 0.35s ease-out;
+}
+
+/* FORMATTAZIONE DEI TESTI GENERATI DA MARKDOWN */
+.content-section h1 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #1f2937;
+    padding-bottom: 10px;
+}
+
+.content-section h3 {
+    font-size: 20px;
+    color: #38bdf8;
+    margin: 25px 0 10px 0;
+}
+
+.content-section p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #cbd5e1;
+}
+
+.content-section ul, .content-section ol {
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+
+.content-section li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Animazione fluida di scorrimento verso l'alto */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
