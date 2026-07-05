@@ -2,57 +2,71 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll(".nav-link");
     const contentDiv = document.getElementById("markdown-content");
 
-    // Funzione per caricare e convertire il file Markdown
+    // Funzione principale per scaricare e convertire il file .md
     async function loadMarkdownPage(fileName) {
-        try {
-            contentDiv.style.opacity = 0; // Effetto dissolvenza in uscita
-            
-            // Scarica il file .md indicando esplicitamente la cartella corrente
-const response = await fetch("./" + fileName, { cache: "no-store" });
+        // Se il nome del file è vuoto o corrotto, imposta la pagina iniziale
+        if (!fileName || fileName === "" || fileName.includes("html")) {
+            fileName = "introduzione.md";
+        }
 
-            if (!response.ok) throw new Error("File non trovato");
+        try {
+            // Scarica il file di testo puro da GitHub
+            const response = await fetch("./" + fileName);
+            
+            if (!response.ok) {
+                throw new Error("File non trovato");
+            }
             
             const markdownText = await response.text();
             
-            // Converte il Markdown in HTML e lo inserisce nella pagina
-            contentDiv.innerHTML = marked.parse(markdownText);
-            contentDiv.style.opacity = 1; // Effetto dissolvenza in entrata
+            // Converte il testo in HTML e lo stampa nella pagina
+            contentDiv.innerHTML = window.marked.parse(markdownText);
+            
         } catch (error) {
-            contentDiv.innerHTML = `<h1>Errore</h1><p>Impossibile caricare la pagina: ${fileName}</p>`;
-            contentDiv.style.opacity = 1;
+            contentDiv.innerHTML = `<h1>Errore di Caricamento</h1><p>Impossibile trovare il file: <strong>${fileName}</strong>. Verifica che sia scritto in minuscolo su GitHub.</p>`;
         }
     }
 
-    // Gestione dei clic sul menu
+    // Gestione dei clic sulle voci del menu laterale
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
-            e.preventDefault(); // Impedisce al browser di scaricare il file .md
+            e.preventDefault(); // Impedisce al browser di scaricare il file fisicamente
             
-            // Gestione della classe active nel menu
+            const targetFile = link.getAttribute("href");
+            window.location.hash = targetFile; // Cambia l'URL in alto (es: #linguaggi.md)
+            
+            // Aggiorna la classe attiva nel menu grafico
             navLinks.forEach(l => l.classList.remove("active"));
             link.classList.add("active");
 
-            // Prende il nome del file (es. "linguaggi.md") e lo carica
-            const targetFile = link.getAttribute("href");
-            window.location.hash = targetFile; // Aggiorna l'URL del browser
             loadMarkdownPage(targetFile);
         });
     });
 
-    // Controllo all'avvio (se c'è un hash nell'URL, es: ://miosito.com)
-    const initialHash = window.location.hash.replace("#", "");
-    if (initialHash) {
-        loadMarkdownPage(initialHash);
-        // Aggiorna il menu active all'avvio
-        navLinks.forEach(l => {
-            if(l.getAttribute("href") === initialHash) {
-                l.classList.add("active");
-            } else {
-                l.classList.remove("active");
-            }
-        });
-    } else {
-        // Altrimenti carica la pagina iniziale di default
-        loadMarkdownPage("introduzione.md");
+    // Controllo della pagina all'avvio del sito (Gestione ricarica o link diretti)
+    function checkCurrentRoute() {
+        const currentHash = window.location.hash.replace("#", "");
+        
+        if (currentHash) {
+            loadMarkdownPage(currentHash);
+            // Sincronizza il menu laterale accendendo il link corretto
+            navLinks.forEach(link => {
+                if (link.getAttribute("href") === currentHash) {
+                    link.classList.add("active");
+                } else {
+                    link.classList.remove("active");
+                }
+            });
+        } else {
+            // Se l'URL non ha hash, carica la pagina iniziale
+            loadMarkdownPage("introduzione.md");
+        }
     }
+
+    // Esegue il controllo all'apertura del sito
+    checkCurrentRoute();
+
+    // Ascolta se l'utente usa le frecce "Avanti/Indietro" del browser
+    window.addEventListener("hashchange", checkCurrentRoute);
 });
+
