@@ -5,28 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tunic Wiki</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Libreria ufficiale e stabile per la conversione del Markdown -->
+    <!-- Libreria ufficiale per leggere il Markdown -->
     <script src="https://jsdelivr.net"></script>
+    <script>
+        // Questo mini-script integrato converte il Markdown e gestisce i clic senza file esterni
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Converte tutti i blocchi Markdown in HTML
+            document.querySelectorAll("[data-markdown]").forEach(container => {
+                const rawContent = container.textContent.trim();
+                container.innerHTML = window.marked.parse(rawContent);
+            });
+
+            const links = document.querySelectorAll(".nav-link");
+            const pages = document.querySelectorAll(".content-section");
+
+            // 2. Funzione per mostrare solo la pagina attiva
+            function navigate(targetHash) {
+                const activeId = targetHash || "#introduzione";
+                
+                pages.forEach(page => {
+                    if ("#" + page.id === activeId) page.classList.add("active");
+                    else page.classList.remove("active");
+                });
+
+                links.forEach(link => {
+                    if (link.getAttribute("href") === activeId) link.classList.add("active");
+                    else link.classList.remove("active");
+                });
+            }
+
+            // 3. Gestione dei clic nel menu
+            links.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const target = link.getAttribute("href");
+                    window.location.hash = target;
+                    navigate(target);
+                });
+            });
+
+            // Controlla la pagina all'avvio e se usi le frecce del browser
+            navigate(window.location.hash);
+            window.addEventListener("hashchange", () => navigate(window.location.hash));
+        });
+    </script>
 </head>
 <body>
 
-    <!-- BARRA LATERALE FISSA (Invariata in tutte le pagine) -->
+    <!-- BARRA LATERALE FISSA -->
     <nav class="sidebar">
         <div class="logo">🦊 TUNIC WIKI</div>
         <ul class="nav-menu">
-            <li><a href="#introduzione.md" class="nav-link active">Introduzione</a></li>
-            <li><a href="#linguaggi.md" class="nav-link">Linguaggi</a></li>
-            <li><a href="#segreti.md" class="nav-link">Segreti</a></li>
+            <li><a href="#introduzione" class="nav-link active">Introduzione</a></li>
+            <li><a href="#linguaggi" class="nav-link">Linguaggi</a></li>
+            <li><a href="#segreti" class="nav-link">Segreti</a></li>
         </ul>
     </nav>
 
-    <!-- AREA DI RENDERIZZAZIONE DEI TESTI -->
+    <!-- CONTAINER DEI CONTENUTI -->
     <main class="main-content">
-        <div id="markdown-content">Caricamento in corso...</div>
+        
+        <!-- PAGINA 1: INTRODUZIONE -->
+        <section id="introduzione" class="content-section active" data-markdown>
+# Benvenuto nel Mondo di Tunic
+
+Sei una piccola volpe in un mondo pieno di grandi misteri. **Tunic** è un gioco d'azione isometrico che omaggia i classici dell'avventura.
+
+### Caratteristiche Principali
+*   **Il Manuale delle Istruzioni**: Ricostruisci le pagine del manuale di gioco.
+*   **Esplorazione Libera**: Nessuna guida lineare, sarai tu a scoprirlo.
+*   **Combattimento Tecnico**: Schivate, parate e gestione della stamina.
+        </section>
+
+        <!-- PAGINA 2: LINGUAGGI -->
+        <section id="linguaggi" class="content-section" data-markdown>
+# Decifrare il Linguaggio Sacro
+
+Quasi tutti i testi nel gioco sono scritti in un alfabeto glifico inventato, chiamato dai fan **Trunic**.
+
+### Come funziona l'Alfabeto
+Il sistema si basa sulla lingua inglese ed è composto dall'unione di due elementi:
+1.  **La sezione interna**: Rappresenta il suono delle *vocali*.
+2.  **La sezione esterna**: Rappresenta il suono delle *consonanti*.
+
+| Simbolo | Suono Fonetico | Esempio |
+| :--- | :--- | :--- |
+| Linea verticale | **🪶 Th** | "The" (Il/La) |
+| Triangolo aperto | **🦊 F** | "Fox" (Volpe) |
+        </section>
+
+        <!-- PAGINA 3: SEGRETI -->
+        <section id="segreti" class="content-section" data-markdown>
+# I Misteri dell'Isola (Spoiler!)
+
+Tunic nasconde enigmi strutturati su più livelli che richiedono molta attenzione.
+
+### Il Sentiero Dorato (The Golden Path)
+L'enigma più imponente richiede di consultare la pagina 49 del manuale. Dovrai unire i frammenti di linee dorate per formare una sequenza.
+
+### Le Fate Segrete
+Ci sono ben 20 fate nascoste nel mondo di gioco. Per liberarle, dovrai guardare attentamente l'ambiente:
+*   Pattern geometrici sui muri.
+*   I movimenti di elementi naturali.
+        </section>
+
     </main>
 
-    <script src="script.js"></script>
 </body>
 </html>
-
-
