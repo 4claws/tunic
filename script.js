@@ -1,79 +1,72 @@
-
-       document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll(".nav-link");
     const contentDiv = document.getElementById("markdown-content");
 
-    // Funzione principale per scaricare e convertire il file .md
-    async function loadMarkdownPage(fileName) {
-        // Se non c'è un nome file valido, carica l'introduzione di default
-        if (!fileName || fileName.trim() === "" || fileName.includes("html")) {
-            fileName = "introduzione.md";
-        }
-
+    // Funzione per scaricare il file .md dal server e convertirlo
+    async function fetchAndRender(pageName) {
+        // Se non c'è una pagina specificata, carichiamo l'introduzione di default
+        const fileToFetch = (pageName && pageName !== "") ? `${pageName}.md` : "introduzione.md";
+        
         try {
-            // Usiamo un percorso pulito che funziona nativamente su GitHub Pages
-            const response = await fetch(fileName, { cache: "no-store" });
+            contentDiv.innerHTML = "Caricamento in corso...";
+            
+            // Scarica il file .md reale presente nel tuo repository
+            const response = await fetch(`./${fileToFetch}`, { cache: "no-store" });
             
             if (!response.ok) {
                 throw new Error("File non trovato");
             }
             
-            const markdownText = await response.text();
+            const rawMarkdown = await response.text();
             
-            // Converte il Markdown in HTML usando la libreria Marked
-            contentDiv.innerHTML = window.marked.parse(markdownText);
+            // Converte il testo Markdown in vero codice HTML e lo stampa a schermo
+            contentDiv.innerHTML = window.marked.parse(rawMarkdown);
             
         } catch (error) {
             contentDiv.innerHTML = `<h1>Errore di Caricamento</h1>
-                                    <p>Impossibile leggere il file: <strong>${fileName}</strong></p>
-                                    <p>Verifica che il file sia presente sul tuo repository.</p>`;
+                                    <p>Impossibile trovare il file di testo: <strong>${fileToFetch}</strong></p>
+                                    <p>Verifica che il file sia presente su GitHub e che il nome sia scritto in minuscolo.</p>`;
         }
     }
 
-    // Gestione dei clic sui link del menu laterale
+    // Gestione dei click sul menu laterale
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
-            e.preventDefault(); // Impedisce al browser di scaricare il file .md
+            e.preventDefault(); // Blocca l'azione di download nativa del browser
             
-            const targetFile = link.getAttribute("href");
-            window.location.hash = targetFile; // Aggiorna l'URL inserendo l'hash (es: #linguaggi.md)
+            const targetHash = link.getAttribute("href"); // Es: "#linguaggi"
+            window.location.hash = targetHash; // Aggiorna l'URL del browser
             
-            // Aggiorna la classe attiva nel menu grafico
+            // Gestione grafica del pulsante attivo
             navLinks.forEach(l => l.classList.remove("active"));
             link.classList.add("active");
 
-            loadMarkdownPage(targetFile);
+            // Rimuove l'hashtag per ottenere il nome puro del file (es: "linguaggi")
+            const pageName = targetHash.replace("#", "");
+            fetchAndRender(pageName);
         });
     });
 
-    // Funzione per controllare la pagina corrente in base all'hash nell'URL
-    function checkCurrentRoute() {
-        // Estrae il nome del file eliminando il simbolo '#' e i parametri extra dell'URL
-        let currentHash = window.location.hash.replace("#", "");
+    // Controllo della rotta all'apertura del sito o al cambio di cronologia
+    function router() {
+        const currentHash = window.location.hash.replace("#", "");
         
-        // Rimuove eventuali barre o spazi bianchi rimasti nell'hash
-        currentHash = currentHash.split('?')[0].trim();
+        // Sincronizza visivamente il menu laterale all'avvio
+        navLinks.forEach(link => {
+            const hrefClean = link.getAttribute("href").replace("#", "");
+            if (hrefClean === currentHash || (currentHash === "" && hrefClean === "introduzione")) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
 
-        if (currentHash) {
-            loadMarkdownPage(currentHash);
-            
-            // Accende il pulsante corretto nel menu laterale
-            navLinks.forEach(link => {
-                if (link.getAttribute("href") === currentHash) {
-                    link.classList.add("active");
-                } else {
-                    link.classList.remove("active");
-                }
-            });
-        } else {
-            // Se l'URL non ha hashtag (es: arrivi sulla home), carica l'introduzione
-            loadMarkdownPage("introduzione.md");
-        }
+        fetchAndRender(currentHash);
     }
 
-    // Controlla la rotta all'apertura del sito
-    checkCurrentRoute();
+    // Avvia il controllo all'apertura del sito
+    router();
 
-    // Gestisce il cambio pagina se l'utente usa le frecce avanti/indietro del browser
-    window.addEventListener("hashchange", checkCurrentRoute);
+    // Ascolta se l'utente preme i pulsanti Avanti/Indietro del browser
+    window.addEventListener("hashchange", router);
 });
