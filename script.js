@@ -1,22 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
+
+       document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll(".nav-link");
     const contentDiv = document.getElementById("markdown-content");
 
     // Funzione principale per scaricare e convertire il file .md
     async function loadMarkdownPage(fileName) {
-        // Se il nome è vuoto, corrotto o contiene .html, carica la pagina iniziale di default
-        if (!fileName || fileName === "" || fileName.includes("html")) {
+        // Se non c'è un nome file valido, carica l'introduzione di default
+        if (!fileName || fileName.trim() === "" || fileName.includes("html")) {
             fileName = "introduzione.md";
         }
 
         try {
-            // RISOLUZIONE DEL PATH: Generiamo l'URL assoluto corretto basato sulla cartella del tuo sito
-            // Questo evita i blocchi di caricamento quando si naviga tra gli hash (#)
-            const siteLocation = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-            const absoluteUrl = window.location.origin + siteLocation + fileName;
-            
-            // Scarichiamo il file di testo puro inviando la richiesta a GitHub
-            const response = await fetch(absoluteUrl, { cache: "no-store" });
+            // Usiamo un percorso pulito che funziona nativamente su GitHub Pages
+            const response = await fetch(fileName, { cache: "no-store" });
             
             if (!response.ok) {
                 throw new Error("File non trovato");
@@ -24,25 +20,25 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const markdownText = await response.text();
             
-            // Trasformiamo il testo Markdown in codice HTML leggibile dal browser
+            // Converte il Markdown in HTML usando la libreria Marked
             contentDiv.innerHTML = window.marked.parse(markdownText);
             
         } catch (error) {
             contentDiv.innerHTML = `<h1>Errore di Caricamento</h1>
-                                    <p>Impossibile trovare o leggere il file: <strong>${fileName}</strong></p>
-                                    <p>Verifica che nel tuo repository GitHub esista un file con questo nome scritto interamente in minuscolo.</p>`;
+                                    <p>Impossibile leggere il file: <strong>${fileName}</strong></p>
+                                    <p>Verifica che il file sia presente sul tuo repository.</p>`;
         }
     }
 
-    // Gestione del click sulle voci del menu della barra laterale
+    // Gestione dei clic sui link del menu laterale
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
-            e.preventDefault(); // Blocca l'azione nativa del browser per i file scaricabili
+            e.preventDefault(); // Impedisce al browser di scaricare il file .md
             
             const targetFile = link.getAttribute("href");
-            window.location.hash = targetFile; // Aggiorna la barra degli indirizzi inserendo l'hash (es: #linguaggi.md)
+            window.location.hash = targetFile; // Aggiorna l'URL inserendo l'hash (es: #linguaggi.md)
             
-            // Cambia l'evidenziazione visiva del link attivo nel menu
+            // Aggiorna la classe attiva nel menu grafico
             navLinks.forEach(l => l.classList.remove("active"));
             link.classList.add("active");
 
@@ -50,13 +46,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Sincronizzazione della cronologia del browser e controllo dell'URL iniziale
+    // Funzione per controllare la pagina corrente in base all'hash nell'URL
     function checkCurrentRoute() {
-        const currentHash = window.location.hash.replace("#", "");
+        // Estrae il nome del file eliminando il simbolo '#' e i parametri extra dell'URL
+        let currentHash = window.location.hash.replace("#", "");
         
+        // Rimuove eventuali barre o spazi bianchi rimasti nell'hash
+        currentHash = currentHash.split('?')[0].trim();
+
         if (currentHash) {
             loadMarkdownPage(currentHash);
-            // Illumina la voce corretta nel menu laterale se l'utente ricarica la pagina
+            
+            // Accende il pulsante corretto nel menu laterale
             navLinks.forEach(link => {
                 if (link.getAttribute("href") === currentHash) {
                     link.classList.add("active");
@@ -65,17 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         } else {
-            // Se l'indirizzo è pulito (es: /tunic/), carica l'introduzione di base
+            // Se l'URL non ha hashtag (es: arrivi sulla home), carica l'introduzione
             loadMarkdownPage("introduzione.md");
         }
     }
 
-    // Avvia la verifica all'apertura del sito
+    // Controlla la rotta all'apertura del sito
     checkCurrentRoute();
 
-    // Gestisce il cambio pagina se l'utente preme i pulsanti Avanti/Indietro del browser
+    // Gestisce il cambio pagina se l'utente usa le frecce avanti/indietro del browser
     window.addEventListener("hashchange", checkCurrentRoute);
 });
-
-});
-
