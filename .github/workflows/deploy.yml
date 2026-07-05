@@ -18,9 +18,7 @@ jobs:
         with:
           python-version: 3.x
           
-      - name: Installa MkDocs e il tema Material
-        run: |
-          pip install mkdocs-material
+      
           
       - name: Compila e Pubblica su GitHub Pages
         run: |
