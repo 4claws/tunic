@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tunic Wiki</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Libreria stabile per la conversione del Markdown -->
+    <!-- Libreria ufficiale per convertire il Markdown in tempo reale -->
     <script src="https://jsdelivr.net"></script>
 </head>
 <body>
 
-    <!-- BARRA LATERALE FISSA -->
+    <!-- BARRA LATERALE FISSA (Presente sempre, in tutte le pagine) -->
     <nav class="sidebar">
         <div class="logo">🦊 TUNIC WIKI</div>
         <ul class="nav-menu">
-            <li><a href="introduzione.md" class="nav-link active">Introduzione</a></li>
-            <li><a href="linguaggi.md" class="nav-link">Linguaggi</a></li>
-            <li><a href="segreti.md" class="nav-link">Segreti</a></li>
+            <li><a href="#introduzione" class="nav-link active">Introduzione</a></li>
+            <li><a href="#linguaggi" class="nav-link">Linguaggi</a></li>
+            <li><a href="#segreti" class="nav-link">Segreti</a></li>
         </ul>
     </nav>
 
-    <!-- AREA DOVE VERRÀ CARICATO IL TESTO -->
+    <!-- AREA DOVE VIENE INIETTATO IL TESTO DEI FILE .MD -->
     <main class="main-content">
         <div id="markdown-content">Caricamento in corso...</div>
     </main>
@@ -28,6 +28,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 </html>
 
