@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             contentDiv.style.opacity = 0; // Effetto dissolvenza in uscita
             
-            // Scarica il file .md dal repository
-            const response = await fetch(fileName);
+            // Scarica il file .md indicando esplicitamente la cartella corrente
+const response = await fetch("./" + fileName, { cache: "no-store" });
+
             if (!response.ok) throw new Error("File non trovato");
             
             const markdownText = await response.text();
