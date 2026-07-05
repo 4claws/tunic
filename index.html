@@ -3,40 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tunic Wiki - Introduzione</title>
+    <title>Tunic Wiki</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Libreria per convertire il Markdown in tempo reale -->
+    <!-- Libreria per convertire il Markdown -->
     <script src="https://jsdelivr.net"></script>
 </head>
 <body>
 
-    <!-- BARRA DI NAVIGAZIONE LATERALE -->
+    <!-- BARRA LATERALE FISSA -->
     <nav class="sidebar">
         <div class="logo">🦊 TUNIC WIKI</div>
         <ul class="nav-menu">
-            <li><a href="index.html" class="nav-link active">Introduzione</a></li>
-            <li><a href="linguaggi.html" class="nav-link">Linguaggi</a></li>
-            <li><a href="segreti.html" class="nav-link">Segreti</a></li>
+            <!-- I link ora puntano ai tuoi file .md reali! -->
+            <li><a href="introduzione.md" class="nav-link active">Introduzione</a></li>
+            <li><a href="linguaggi.md" class="nav-link">Linguaggi</a></li>
+            <li><a href="segreti.md" class="nav-link">Segreti</a></li>
         </ul>
     </nav>
 
-    <!-- CONTENUTO PRINCIPALE -->
+    <!-- AREA DOVE VERRÀ CARICATO IL TESTO -->
     <main class="main-content">
-        <section data-markdown>
-# Benvenuto nel Mondo di Tunic
-
-Sei una piccola volpe in un mondo pieno di grandi misteri. **Tunic** è un gioco d'azione isometrico che omaggia i classici dell'avventura, dove l'esplorazione e la scoperta personale sono al centro dell'esperienza.
-
-### Caratteristiche Principali
-*   **Il Manuale delle Istruzioni**: Ricostruisci le pagine di un vero e proprio manuale di gioco vecchio stile.
-*   **Esplorazione Libera**: Nessuna guida lineare, sarai tu a dover capire dove andare.
-*   **Combattimento Tecnico**: Schivate, parate e gestione della barra della stamina.
-
-Usa il menu a sinistra per decifrare l'alfabeto del gioco o scoprire i misteri più reconditi dell'isola.
-        </section>
+        <div id="markdown-content">Caricamento in corso...</div>
     </main>
 
     <script src="script.js"></script>
 </body>
 </html>
+
 
