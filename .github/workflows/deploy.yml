@@ -1,0 +1,27 @@
+name: Deploy MkDocs
+on:
+  push:
+    branches:
+      - main  # Si attiva ogni volta che salvi sul ramo principale
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Configura Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+          
+      - name: Installa MkDocs e il tema Material
+        run: |
+          pip install mkdocs-material
+          
+      - name: Compila e Pubblica su GitHub Pages
+        run: |
+          mkdocs gh-deploy --force
