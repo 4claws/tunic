@@ -3,15 +3,9 @@ site_name: TUNIC - Manuale di Istruzioni
 theme:
   name: material
   language: it
-  palette:
-    # Colore principale ispirato alla copertina del manuale
-    primary: deep orange
-    accent: amber
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - toc.integrate
+  font:
+    text: Courier New  # Applica il font stile macchina da scrivere del gioco
+    code: Share Tech Mono
 
-# Diciamo a MkDocs di caricare i nostri stili grafici stile libretto
 extra_css:
   - css/tunic_style.css
