@@ -9,10 +9,12 @@ Caro Mike, qui ci sono 2 cose per il completismo e per la gestione della live pr
 ## Da fare:
 
 ### Tesoro pag 1
+il testo tradotto dice: 
+
+The softest Feather corrected eleven times, departed once more
 
 <details><summary>Suggerimento</summary> 
-
-il testo tradotto dice: The softest Feather corrected eleven times, departed once more  https://en.wikipedia.org/wiki/Down_feather
+  https://en.wikipedia.org/wiki/Down_feather
 </details>
 
 <details> <summary> soluzione</summary>
