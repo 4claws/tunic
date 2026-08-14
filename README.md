@@ -49,7 +49,7 @@ Nel save speciale in cui eri già stato puoi fare ancora una cosa
 
 se non sai come fare
 
-<details>  <summary> </summary> usa il codice pag 17 </details>
+<details>  <summary> </summary> usa il codice pag 17. Con la bomba infiammabile rimani fermo per non far spegnere il fuoco. Se fallisci cancella il save che si ricrea. </details>
 
 
 ### APPROFONDIMENTI
