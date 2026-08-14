@@ -26,8 +26,8 @@ soluzione  vai sull'isoletta e premi Giù, Destra (x11), Sinistra (x12)
 
 <details> <summary> Dove entrare </summary> 
 
-![
-](image.png)
+<img width="582" height="336" alt="image" src="https://github.com/user-attachments/assets/d40ca084-6f60-47a0-87e2-434a7fb4abe1" />
+
 
 
 </details>
@@ -36,7 +36,8 @@ soluzione  vai sull'isoletta e premi Giù, Destra (x11), Sinistra (x12)
 
 <details> <summary>  </summary> 
 
-![alt text](image-1.png)
+<img width="337" height="292" alt="image" src="https://github.com/user-attachments/assets/ccc2be5f-8d94-4e55-a5e1-a4936ee91a2c" />
+
 
 </details>
 
