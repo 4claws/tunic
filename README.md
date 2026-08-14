@@ -21,7 +21,7 @@ A pagina 51 ti fa intuire la presenza del parry anche se non c'è spiegazione di
 
 ### Tesoro pag 1
 
-<details> <summary>traduzione</summary> The softest Feather corrected eleven times, departed once more </details>
+<details> <summary>traduzione</summary> The softest feather, corrected eleven times, departed once more </details>
 
 
 <details><summary>Suggerimento</summary> 
