@@ -12,12 +12,13 @@ Caro Mike, qui ci sono 2 cose per il completismo e per la gestione della live pr
 
 <details><summary>Suggerimento</summary> 
 
-il testo tradotto dice: The softest Feather corrected eleven times, departed once more  
+il testo tradotto dice: The softest Feather corrected eleven times, departed once more  https://en.wikipedia.org/wiki/Down_feather
 </details>
 
 <details> <summary> soluzione</summary>
-
-soluzione  vai sull'isoletta e premi Giù, Destra (x11), Sinistra (x12)
+Softest feather - Down
+Correct = Right
+Depart = leave = left
 
 </details>
 
