@@ -3,8 +3,17 @@
 
 Caro Mike, qui ci sono 2 cose per il completismo e per la gestione della live prima del doc finale.
 
+Come hai ben intuito la lingua è traducibile. Nel prossimo doc avrai la spiegazione dettagliata di come funziona, avrai inoltre il manuale completamente tradotto e la risoluzione della Glyph Tower (quella a cui accedi tramite la stanza dei tesori).
+Ti lasciamo già un tool nel caso tu voglia sperimentare da solo. In caso contrario, ti forniremo direttamente le traduzioni.
+
+
+
 ## Chicca
-- A pag. 14 il manuale spiega il <details> <summary>  </summary>Parry</details>
+A pagina 51 ti fa intuire la presenza del parry anche se non c'è spiegazione di come fare.
+
+
+<img width="260" height="112" alt="image" src="https://github.com/user-attachments/assets/fc346d8e-6458-4a05-8bd4-b8f9d9f762e7" />
+
 
 ## Da fare:
 
@@ -60,9 +69,10 @@ se non sai come fare
 
 ### APPROFONDIMENTI
 
-Nel doc a seguire verrà spiegata, fra le varie cose, la Glyph Tower e come funziona la lingua. 
+Nel doc a seguire verrà spiegata, fra le varie cose, la Glyph Tower (quella a cui accedi tramite la stanza dei tesori) e come funziona la lingua. 
 Ti ricordo che il doc non è stato fatto da noi, quindi non è su misura sulla tua esperienza, l'abbiamo solo tradotto e messo come sito per renderlo più leggibile in live. 
 Abbiamo aggiunto solo qualche video che ti può interessare e il manuale tradotto che è particolarmente importante.
+
 
 Se hai voglia e tempo, ti consigliamo di provare a fare un achievement, consiste nel trovare il fucile prima della spada.
 
