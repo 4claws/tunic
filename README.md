@@ -16,9 +16,12 @@ il testo tradotto dice: The softest Feather corrected eleven times, departed onc
 </details>
 
 <details> <summary> soluzione</summary>
-Softest feather - Down
-Correct = Right
-Depart = leave = left
+
+Softest feather - Down 
+ 
+Correct - Right 
+
+Depart - leave - left 
 
 </details>
 
