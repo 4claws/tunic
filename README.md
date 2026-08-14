@@ -36,6 +36,7 @@ Correct - Right
 
 Depart - leave - left 
 
+Giù, Destra (x11), Sinistra (x12)
 </details>
 
  ### Tesoro pag 40
@@ -75,7 +76,8 @@ Puoi proseguire con il secondo doc. Ti ricordo che  non è stato fatto da noi, q
 
 Se hai voglia e tempo, ti consigliamo di provare a fare un achievement, consiste nel trovare il fucile prima della spada.
 
+Sito: https://tunic-segreti-arg.netlify.app/
 
 Doc originale: https://docs.google.com/document/d/1S4ipc2Shg_ZUEXMOXau14xyC0m7sr6h6o576LvwyuMY/edit?tab=t.0#heading=h.5exa9jys3ow5
 
-Sito: https://tunic-segreti-arg.netlify.app/
+
