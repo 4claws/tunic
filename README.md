@@ -3,7 +3,7 @@
 
 Caro Mike, qui ci sono 2 cose per il completismo e per la gestione della live prima del doc finale.
 
-Come hai ben intuito la lingua è traducibile. Nel prossimo doc avrai la spiegazione dettagliata di come funziona, avrai inoltre il manuale completamente tradotto e la risoluzione della Glyph Tower (quella a cui accedi tramite la stanza dei tesori).
+Come hai ben intuito la lingua è traducibile. Nel prossimo doc avrai, tra le altre cose, la spiegazione dettagliata di come questa funziona, il manuale completamente tradotto e la risoluzione della Glyph Tower (quella a cui accedi tramite la stanza dei tesori).
 Ti lasciamo già un tool nel caso tu voglia sperimentare da solo. In caso contrario, ti forniremo direttamente le traduzioni.
 
 https://konotyran.github.io/tunic/index.html
